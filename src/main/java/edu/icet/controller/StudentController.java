@@ -9,11 +9,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/student")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 public class StudentController {
-
-    //http://localhost:8081/student/get
 
     private final StudentService service;
 
@@ -26,20 +24,24 @@ public class StudentController {
     public String getVersion(){
         return service.getVersion();
     }
+
     @PostMapping("/add-student")
     public void addStudent(@RequestBody Student student){
         service.addStudent(student);
     }
+
     @GetMapping("/search-by-id/{id}")
     public Student searchById(@PathVariable Integer id){
         return service.searchById(id);
     }
+
     @DeleteMapping("/delete/{id}")
     public Boolean deleteStudentById(@PathVariable Integer id){
-       return service.deleteStudent(id);
+        return service.deleteStudent(id);
     }
+
     @PutMapping("/update")
     public Student updateStudent(@RequestBody Student student){
-       return service.updateStudent(student);
+        return service.updateStudent(student);
     }
 }
